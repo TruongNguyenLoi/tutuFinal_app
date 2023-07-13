@@ -76,7 +76,7 @@ public class ReportController {
 
 	// đếm số lượng đơn hàng theo trạng thái đơn hàng
 	@GetMapping("/order/count")
-//	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<List<OrderResponse>> getQuantityByStatus(
 			@RequestParam(name = "page", defaultValue = "0") Integer page,
 			@RequestParam(name = "limit", defaultValue = "1000") Integer limit,
@@ -115,7 +115,7 @@ public class ReportController {
 
 	// đếm số lượng đơn hàng theo trạng thái đơn hàng
 	@GetMapping("/seller/count/{username}")
-//	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
 	public ResponseEntity<List<OrderResponse>> getQuantityByStatusSellerByAdmin(
 			@RequestParam(name = "page", defaultValue = "0") Integer page,
 			@RequestParam(name = "limit", defaultValue = "1000") Integer limit,
@@ -153,7 +153,7 @@ public class ReportController {
 	}
 
 	@GetMapping("/seller_list/{username}")
-//	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SELLER')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SELLER')")
 	public ResponseEntity<Page<OrderHisDto>> getAllSellerByUsernameByAdmin(
 			@RequestParam(name = "page", defaultValue = "0") Integer page,
 			@RequestParam(name = "limit", defaultValue = "10") Integer limit,
@@ -170,7 +170,7 @@ public class ReportController {
 
 	// đếm số lượng đơn hàng theo trạng thái đơn hàng
 	@GetMapping("/seller/count")
-//	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
 	public ResponseEntity<List<OrderResponse>> getQuantityByStatusAndShipper(
 			@RequestParam(name = "page", defaultValue = "0") Integer page,
 			@RequestParam(name = "limit", defaultValue = "1000") Integer limit,

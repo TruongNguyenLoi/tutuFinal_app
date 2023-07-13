@@ -44,6 +44,7 @@ public class AddressController {
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<UserAddressDto> create(@RequestBody UserAddressDto dto) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
 		String username = auth.getName();
 		dto.setUsername(username);
 		UserAddressDto result = service.saveOrUpdate(dto);
@@ -51,7 +52,7 @@ public class AddressController {
 	}
 	
 	@PutMapping(value = "/customer")
-	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<UserAddressDto> update(@RequestBody UserAddressDto dto) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();

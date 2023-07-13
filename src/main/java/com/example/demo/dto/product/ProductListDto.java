@@ -88,7 +88,7 @@ public class ProductListDto extends AbstractDTO<ProductListDto> {
 			}
 		}
 		this.in_stock = count;
-		this.mainImage = entity.getMainIamge();
+		this.mainImage = entity.getMainImage();
 		category = new CategoryDtoRes();
 		if (category != null) {
 			Category item = entity.getCategory();

@@ -44,7 +44,7 @@ public class SlideController {
 	}
 
 	@PostMapping("")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<SlideDto> create(@RequestBody SlideDto dto) {
 		SlideDto result = service.saveOrUpdate(dto);
 		return new ResponseEntity<SlideDto>(result, HttpStatus.OK);

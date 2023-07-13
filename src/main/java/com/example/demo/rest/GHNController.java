@@ -52,9 +52,9 @@ import com.example.demo.repository.OrderRepository;
 @RequestMapping(value = "/api/services/ship/ghn")
 public class GHNController {
 
-	public static final String TOKEN = "d3d4b907-2781-11ec-b8c6-fade198b4859";
-	public static final Integer SHOP_ID = 82605;
-	public static final String API_ENDPOINT = "https://dev-online-gateway.ghn.vn/shiip/public-api";
+	public static final String TOKEN = "5a213ffb-1bec-11ee-b1d4-92b443b7a897";
+	public static final Integer SHOP_ID =125021;
+	public static final String API_ENDPOINT = "https://dev-online-gateway.ghn.vn/shiip/public-api/";
 	public static final String CREATE_ORDER_URL = API_ENDPOINT + "/v2/shipping-order/create";
 	public static final String CALCULATE_TIME_SHIP_URL = API_ENDPOINT + "/v2/shipping-order/leadtime";
 	public static final String CALCULATE_SHIP_FEE_URL = API_ENDPOINT + "/v2/shipping-order/fee";
@@ -113,7 +113,7 @@ public class GHNController {
 			StringEntity stringEntity = new StringEntity(json.toString(), StandardCharsets.UTF_8);
 			post.setHeader("content-type", "application/json");
 			post.setHeader("token", TOKEN);
-			post.setHeader("shopid", SHOP_ID.toString());
+			post.setHeader("ShopId", SHOP_ID.toString());
 			post.setEntity(stringEntity);
 			CloseableHttpResponse res = client.execute(post);
 			BufferedReader rd = new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
@@ -146,11 +146,61 @@ public class GHNController {
 
 
 	// tính phí ship
+//	@GetMapping(value = "/ship-fee")
+//	public ResponseEntity<ShipFeeResponse> calculateShipFee(@RequestParam Integer from_district_id,
+//			@RequestParam Integer service_id, @RequestParam Integer to_district_id, @RequestParam String to_ward_code,
+//			@RequestParam Integer height, @RequestParam Integer length, @RequestParam Integer weight,
+//			@RequestParam Integer width) throws ClientProtocolException, IOException, URISyntaxException {
+//		JSONObject json = new JSONObject();
+//		json.put("from_district_id", from_district_id);
+//		json.put("service_id", service_id);
+//		json.put("to_district_id", to_district_id);
+//		json.put("to_ward_code", to_ward_code);
+//		json.put("height", height);
+//		json.put("length", length);
+//		json.put("weight", weight);
+//		json.put("width", width);
+////		json.put("insurance_value", insurance_value);
+//		CloseableHttpClient client = HttpClients.createDefault();
+//		HttpGet get = new HttpGet(CALCULATE_SHIP_FEE_URL);
+//		List<NameValuePair> params = new ArrayList<>();
+//		for (Map.Entry<String, Object> e : json.toMap().entrySet()) {
+//			params.add(new BasicNameValuePair(e.getKey(), e.getValue().toString()));
+//		}
+//
+//		URI uri = new URIBuilder(get.getURI()).setParameters(params).build();
+//		get.setURI(uri);
+//		get.setHeader("token", TOKEN);
+//		get.setHeader("ShopId", SHOP_ID.toString());
+//		CloseableHttpResponse res = client.execute(get);
+//		BufferedReader rd = new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+//		StringBuilder resultJsonStr = new StringBuilder();
+//		String line;
+//		while ((line = rd.readLine()) != null) {
+//			resultJsonStr.append(line);
+//		}
+//		JSONObject result = new JSONObject(resultJsonStr.toString());
+//		JSONObject fee = (JSONObject) result.get("data");
+////		System.out.println(fee);
+//
+//		Long only_ship_fee = Long.parseLong(fee.get("service_fee").toString());
+//		Long total_ship_fee = Long.parseLong(fee.get("total").toString());
+//		Long insurance_fee = Long.parseLong(fee.get("insurance_fee").toString());
+//		String message = result.get("message").toString();
+//		Integer code = (Integer) result.get("code");
+//		Boolean success;
+//		if (code == 200)
+//			success = true;
+//		else
+//			success = false;
+//		ShipFeeResponse ship = new ShipFeeResponse(only_ship_fee, total_ship_fee, insurance_fee, message, success);
+//		return new ResponseEntity<ShipFeeResponse>(ship, HttpStatus.OK);
+//	}
 	@GetMapping(value = "/ship-fee")
 	public ResponseEntity<ShipFeeResponse> calculateShipFee(@RequestParam Integer from_district_id,
-			@RequestParam Integer service_id, @RequestParam Integer to_district_id, @RequestParam String to_ward_code,
-			@RequestParam Integer height, @RequestParam Integer length, @RequestParam Integer weight,
-			@RequestParam Integer width, @RequestParam Long value) throws ClientProtocolException, IOException, URISyntaxException {
+															@RequestParam Integer service_id, @RequestParam Integer to_district_id, @RequestParam String to_ward_code,
+															@RequestParam Integer height, @RequestParam Integer length, @RequestParam Integer weight,
+		@RequestParam Integer width) throws ClientProtocolException, IOException, URISyntaxException {
 		JSONObject json = new JSONObject();
 		json.put("from_district_id", from_district_id);
 		json.put("service_id", service_id);
@@ -160,7 +210,7 @@ public class GHNController {
 		json.put("length", length);
 		json.put("weight", weight);
 		json.put("width", width);
-		json.put("insurance_value", value);
+		// json.put("insurance_value", insurance_value);
 		CloseableHttpClient client = HttpClients.createDefault();
 		HttpGet get = new HttpGet(CALCULATE_SHIP_FEE_URL);
 		List<NameValuePair> params = new ArrayList<>();
@@ -171,7 +221,7 @@ public class GHNController {
 		URI uri = new URIBuilder(get.getURI()).setParameters(params).build();
 		get.setURI(uri);
 		get.setHeader("token", TOKEN);
-		get.setHeader("shopid", SHOP_ID.toString());
+		get.setHeader("ShopId", SHOP_ID.toString());
 		CloseableHttpResponse res = client.execute(get);
 		BufferedReader rd = new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
 		StringBuilder resultJsonStr = new StringBuilder();
@@ -180,21 +230,23 @@ public class GHNController {
 			resultJsonStr.append(line);
 		}
 		JSONObject result = new JSONObject(resultJsonStr.toString());
-		JSONObject fee = (JSONObject) result.get("data");
-//		System.out.println(fee);
-		
-		Long only_ship_fee = Long.parseLong(fee.get("service_fee").toString());
-		Long total_ship_fee = Long.parseLong(fee.get("total").toString());
-		Long insurance_fee = Long.parseLong(fee.get("insurance_fee").toString());
-		String message = result.get("message").toString();
-		Integer code = (Integer) result.get("code");
-		Boolean success;
-		if (code == 200)
-			success = true;
-		else
-			success = false;
+		JSONObject data = result.optJSONObject("data"); // Use optJSONObject to handle possible null value
+
+		Long only_ship_fee = null;
+		Long total_ship_fee = null;
+		Long insurance_fee = null;
+		String message = result.optString("message", ""); // Use optString to handle possible null value
+		Integer code = result.optInt("code", 0); // Use optInt to handle possible null value
+
+		Boolean success = code == 200;
+		if (data != null) {
+			only_ship_fee = data.optLong("service_fee", 0);
+			total_ship_fee = data.optLong("total", 0);
+//			insurance_fee = data.optLong("insurance_fee", 0);
+		}
+
 		ShipFeeResponse ship = new ShipFeeResponse(only_ship_fee, total_ship_fee, insurance_fee, message, success);
-		return new ResponseEntity<ShipFeeResponse>(ship, HttpStatus.OK);
+		return new ResponseEntity<>(ship, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/checkorderinfo")

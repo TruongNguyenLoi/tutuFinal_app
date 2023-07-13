@@ -40,7 +40,7 @@ public class CartController {
 
 	// get all info cart
 	@GetMapping("/items/selected")
-	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+//	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	public ResponseEntity<CartDto> getCartDetailSelected() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();

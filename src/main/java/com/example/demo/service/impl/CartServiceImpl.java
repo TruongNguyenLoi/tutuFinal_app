@@ -247,7 +247,12 @@ public class CartServiceImpl implements CartService {
 				}
 			}
 			
-			Integer total_weight = 0, total_length = 0, total_width = 0, total_height = 0, quantity = 0;
+			Integer total_weight = 0;
+
+			Integer total_length = 0;
+			Integer total_width = 0;
+			Integer total_height = 0;
+			Integer quantity = 0;
 			Long total_price = 0L;
 			for (CartDetailDto item : list) {
 				Product p = productRepos.getById(item.getProduct_id());

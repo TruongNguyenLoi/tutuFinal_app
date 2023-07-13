@@ -87,12 +87,12 @@ public class OrderController {
 	}
 
 	@GetMapping("/seller/{id}")
-//	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SELLER')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SELLER')")
 	public ResponseEntity<Page<OrderHisDto>> getAllByShipper(
 			@RequestParam(name = "page", defaultValue = "0") Integer page,
 			@RequestParam(name = "limit", defaultValue = "10") Integer limit,
 			@RequestParam(name = "last_date", defaultValue = "0") Integer last_date,
-			@RequestParam(name = "status", defaultValue = "3") Integer status, @PathVariable Long id) {
+			@RequestParam(name = "status", defaultValue = "4") Integer status, @PathVariable Long id) {
 		AdvanceSearchDto dto = new AdvanceSearchDto();
 		dto.setPageIndex(page);
 		dto.setPageSize(limit);
@@ -103,12 +103,12 @@ public class OrderController {
 	}
 
 	@GetMapping("/seller")
-//	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SELLER')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SELLER')")
 	public ResponseEntity<Page<OrderHisDto>> getAllShipperByUsername(
 			@RequestParam(name = "page", defaultValue = "0") Integer page,
 			@RequestParam(name = "limit", defaultValue = "10") Integer limit,
 			@RequestParam(name = "last_date", defaultValue = "0") Integer last_date,
-			@RequestParam(name = "status", defaultValue = "3") Integer status) {
+			@RequestParam(name = "status", defaultValue = "4") Integer status) {
 		AdvanceSearchDto dto = new AdvanceSearchDto();
 		dto.setPageIndex(page);
 		dto.setPageSize(limit);
@@ -129,7 +129,7 @@ public class OrderController {
 
 	// get sau khi đặt
 	@GetMapping("/chi-tiet/{id}")
-//	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_SELLER')")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_SELLER')")
 	public ResponseEntity<OrderDto> getDetailAfterPayment(@PathVariable Long id) {
 		OrderDto result = service.getOneOrderAfterPayment(id);
 		String ship_type = "";
@@ -396,7 +396,7 @@ public class OrderController {
 		return new ResponseEntity<MessageResponse>(new MessageResponse("Xác nhận đơn hàng thành công!"), HttpStatus.OK);
 	}
 
-	// huỷ đơn hàng
+	// huỷ đơn hàng status =-1
 	@PutMapping("/cancel/{id}")
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_SELLER')")
 	public ResponseEntity<MessageResponse> cancel(@PathVariable Long id) {

@@ -63,12 +63,12 @@ public class InventoryServiceImpl implements InventoryService {
 
 		String orderBy = " ORDER BY p.id DESC";
 		String groupBy = " group by i.product.id ";
-		String sqlCount = "select new com.example.demo.dto.inventory.InventoryDtoNew(p.id as productId, "
-				+ "p.name as product_name, " + "p.mainIamge as productMainImage, " + "c.name as category_name, "
+		String sqlCount = "select new com.example.demo.dto.inventory.InventoryDtoRes(p.id as productId, "
+				+ "p.name as product_name, " + "p.mainImage as productMainImage, " + "c.name as category_name, "
 				+ "sum(i.total_import_item) as total_import_item, " + "sum(i.quantity_item) as quantity_item ) "
 				+ "from Inventory as i inner join Product as p on p.id = i.product.id inner join Category as c on c.id = p.category.id ";
-		String sql = "select new com.example.demo.dto.inventory.InventoryDtoNew(p.id as productId, "
-				+ "p.name as product_name, " + "p.mainIamge as productMainImage, " + "c.name as category_name, "
+		String sql = "select new com.example.demo.dto.inventory.InventoryDtoRes(p.id as productId, "
+				+ "p.name as product_name, " + "p.mainImage as productMainImage, " + "c.name as category_name, "
 				+ "sum(i.total_import_item) as total_import_item, " + "sum(i.quantity_item) as quantity_item ) "
 				+ "from Inventory as i inner join Product as p on p.id = i.product.id inner join Category as c on c.id = p.category.id ";
 		if (dto.getCategory() != null) {

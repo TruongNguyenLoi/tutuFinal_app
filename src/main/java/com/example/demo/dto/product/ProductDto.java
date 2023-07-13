@@ -114,7 +114,7 @@ public class ProductDto extends AbstractDTO<ProductDto> {
 		this.description = entity.getDescription();
 		this.price = entity.getPrice();
 		this.list_price = entity.getList_price();
-		this.mainImage = entity.getMainIamge();
+		this.mainImage = entity.getMainImage();
 		this.sizeWeight = entity.getSizeWeight();
 		this.material = entity.getMaterial();
 		this.weight = entity.getWeight();

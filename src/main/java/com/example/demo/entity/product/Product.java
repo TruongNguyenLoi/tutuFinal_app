@@ -48,7 +48,7 @@ public class Product extends BaseEntity {
 	private Long list_price;
 
 	@Column(name = "main_image")
-	private String mainIamge;
+	private String mainImage;
 
 	@Column(name = "material") // 3
 	private String material;
@@ -81,10 +81,6 @@ public class Product extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id") // 1, 2, 3
 	private Category category;
-
-//	@ManyToMany(cascade = CascadeType.PERSIST)
-//	@JoinTable(name = "tbl_product_tag", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
-//	private List<Tag> tags;
 
 
 
@@ -176,12 +172,12 @@ public class Product extends BaseEntity {
 		this.list_price = list_price;
 	}
 
-	public String getMainIamge() {
-		return mainIamge;
+	public String getMainImage() {
+		return mainImage;
 	}
 
-	public void setMainIamge(String mainIamge) {
-		this.mainIamge = mainIamge;
+	public void setMainImage(String mainImage) {
+		this.mainImage = mainImage;
 	}
 
 	public String getMaterial() {
@@ -321,12 +317,5 @@ public class Product extends BaseEntity {
 		this.features = features;
 	}
 
-//	public List<Tag> getTags() {
-//		return tags;
-//	}
-//
-//	public void setTags(List<Tag> tags) {
-//		this.tags = tags;
-//	}
 
 }

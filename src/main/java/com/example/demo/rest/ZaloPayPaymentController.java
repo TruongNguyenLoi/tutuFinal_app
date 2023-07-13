@@ -80,7 +80,7 @@ public class ZaloPayPaymentController {
 		embeddata.put("redirecturl", ZaloPayConfig.REDIRECT_URL);
 
 		Map<String, String> columninfo = new HashMap<String, String>();
-		columninfo.put("store_name", "E-Shop");
+		columninfo.put("store_name", "TUTU STORE");
 		embeddata.put("columninfo", new JSONObject(columninfo).toString());
 		zalopay_Params.put("embeddata", new JSONObject(embeddata).toString());
 

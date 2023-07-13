@@ -8,9 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.product.Brand;
 import com.example.demo.entity.product.Product;
 
+import java.util.List;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	public Page<Product> findAllByBrand(Brand brand, Pageable pageable);
+//	public List<Product> getAll();
 	
 }

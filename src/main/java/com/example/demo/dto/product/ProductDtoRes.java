@@ -15,7 +15,6 @@ import com.example.demo.entity.product.Brand;
 import com.example.demo.entity.product.Image;
 import com.example.demo.entity.product.Product;
 import com.example.demo.entity.promotion.ProductDiscount;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -122,7 +121,7 @@ public class ProductDtoRes extends AbstractDTO<ProductDtoRes> {
 			this.percent_discount = null;
 		}
 
-		this.mainImage = entity.getMainIamge();
+		this.mainImage = entity.getMainImage();
 		this.weight = entity.getWeight();
 		this.length = entity.getLength();
 		this.width = entity.getWidth();

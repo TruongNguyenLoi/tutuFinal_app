@@ -12,8 +12,8 @@ public class SearchDto {
 	private String resolution; // tim theo thuong hieu
 	private String image; // tim theo thuong hieu
 	private String video; // tim theo thuong hieu
-	private Integer isSmartTV;
-	private Integer is3DTV;
+//	private Integer isSmartTV;
+//	private Integer is3DTV;
 	private String price;
 	private String category;
 	private String subcategory;
@@ -102,21 +102,21 @@ public class SearchDto {
 		this.video = video;
 	}
 
-	public Integer getIsSmartTV() {
-		return isSmartTV;
-	}
-
-	public void setIsSmartTV(Integer isSmartTV) {
-		this.isSmartTV = isSmartTV;
-	}
-
-	public Integer getIs3DTV() {
-		return is3DTV;
-	}
-
-	public void setIs3DTV(Integer is3dtv) {
-		is3DTV = is3dtv;
-	}
+//	public Integer getIsSmartTV() {
+//		return isSmartTV;
+//	}
+//
+//	public void setIsSmartTV(Integer isSmartTV) {
+//		this.isSmartTV = isSmartTV;
+//	}
+//
+//	public Integer getIs3DTV() {
+//		return is3DTV;
+//	}
+//
+//	public void setIs3DTV(Integer is3dtv) {
+//		is3DTV = is3dtv;
+//	}
 
 	public String getPrice() {
 		return price;

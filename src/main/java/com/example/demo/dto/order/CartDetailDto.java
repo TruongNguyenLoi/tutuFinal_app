@@ -64,7 +64,7 @@ public class CartDetailDto extends AbstractDTO<CartDetailDto> {
 //		if (entity.getProduct().getInventory() != null) {
 //			this.in_stock = entity.getProduct().getInventory().getQuantity_item();
 //		}
-		this.mainImage = entity.getProduct().getMainIamge();
+		this.mainImage = entity.getProduct().getMainImage();
 		category = new CategoryDtoRes();
 		if (category != null) {
 			Category item = entity.getProduct().getCategory();

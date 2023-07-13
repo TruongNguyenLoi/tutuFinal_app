@@ -88,8 +88,8 @@ public class ProductController {
 		dto.setImage(image);
 		dto.setVideo(video);
 		dto.setResolution(resolution);
-		dto.setIs3DTV(tv_3d);
-		dto.setIsSmartTV(smart_tv);
+//		dto.setIs3DTV(tv_3d);
+//		dto.setIsSmartTV(smart_tv);
 		Page<ProductListDto> result = service.productList(dto);
 		return new ResponseEntity<Page<ProductListDto>>(result, HttpStatus.OK);
 	}
@@ -108,8 +108,8 @@ public class ProductController {
 			@RequestParam(name = "resolution", defaultValue = "") String resolution, 
 			@RequestParam(name = "image", defaultValue = "") String image, 
 			@RequestParam(name = "video", defaultValue = "") String video,
-			@RequestParam(name = "smart_tv", defaultValue = "") Integer smart_tv, 
-			@RequestParam(name = "tv_3d", defaultValue = "") Integer tv_3d, 
+//			@RequestParam(name = "smart_tv", defaultValue = "") Integer smart_tv,
+//			@RequestParam(name = "tv_3d", defaultValue = "") Integer tv_3d,
 			@PathVariable String category,
 			@PathVariable String subcategory) {
 		SearchDto dto = new SearchDto(page, limit, keyword, category, subcategory);
@@ -121,8 +121,8 @@ public class ProductController {
 		dto.setImage(image);
 		dto.setVideo(video);
 		dto.setResolution(resolution);
-		dto.setIs3DTV(tv_3d);
-		dto.setIsSmartTV(smart_tv);
+//		dto.setIs3DTV(tv_3d);
+//		dto.setIsSmartTV(smart_tv);
 		Page<ProductListDto> result = service.productList(dto);
 		return new ResponseEntity<Page<ProductListDto>>(result, HttpStatus.OK);
 	}
@@ -177,7 +177,7 @@ public class ProductController {
 
 	// lấy toàn bộ sản phẩm trong csdl
 	@GetMapping(value = "/get/all")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Page<ProductListDto>> getAllProduct(@RequestParam(name = "page", defaultValue = "1") int page,
 			@RequestParam(name = "limit", defaultValue = "24") int limit,
 			@RequestParam(name = "name", defaultValue = "") String name,

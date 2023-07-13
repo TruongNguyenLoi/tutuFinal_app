@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.entity.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import com.example.demo.dto.product.ProductTopSale;
 
 @Service
 public interface ProductService {
+	public List<ProductListDto> getAll();
 
 	// Lấy các sản phẩm hiển thị lên trang chủ, có trạng thái hiển thị là 1
 //	public Page<ProductDto> searchByPage(SearchDto dto);

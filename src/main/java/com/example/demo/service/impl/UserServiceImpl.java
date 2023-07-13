@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
 			UserDto u = new UserDto(i);
 			if(erole.name().toString().equalsIgnoreCase("ROLE_SELLER")) {
 				u.setCccd(i.getSeller().getCccd());
-				u.setExp(i.getSeller().getExp());
+							u.setExp(i.getSeller().getExp());
 			}
 			dtos.add(u);
 		}

@@ -42,7 +42,7 @@ public class DiscountProductDto {
 		this.type = entity.getType();
 		this.value = entity.getValue();
 		this.productName = entity.getProduct().getName();
-		this.productMainImage = entity.getProduct().getMainIamge();
+		this.productMainImage = entity.getProduct().getMainImage();
 		this.price = entity.getProduct().getPrice();
 	}
 

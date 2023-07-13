@@ -54,10 +54,10 @@ public class DiscountProductServiceImpl implements DiscountProductService {
 
 		String orderBy = " ORDER BY p.id DESC";
 		String groupBy = " group by i.product.id ";
-		String sqlCount = "select new com.example.demo.dto.promotion.DiscountProductDto(p.id, p.name, p.mainIamge, p.price, "
+		String sqlCount = "select new com.example.demo.dto.promotion.DiscountProductDto(p.id, p.name, p.mainImage, p.price, "
 				+ "sum(i.quantity_item) as quantity_item, " + " d.status, d.type, d.value)"
 				+ "from Inventory as i inner join Product as p on p.id = i.product.id inner join ProductDiscount as d on d.product.id = p.id ";
-		String sql = "select new com.example.demo.dto.promotion.DiscountProductDto(p.id, p.name, p.mainIamge, p.price, "
+		String sql = "select new com.example.demo.dto.promotion.DiscountProductDto(p.id, p.name, p.mainImage, p.price, "
 				+ "sum(i.quantity_item) as quantity_item, " + " d.status, d.type, d.value)"
 				+ "from Inventory as i inner join Product as p on p.id = i.product.id inner join ProductDiscount as d on d.product.id = p.id ";
 		if (dto.getKeyword() != null && StringUtils.hasText(dto.getKeyword())) {

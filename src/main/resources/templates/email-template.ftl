@@ -34,7 +34,7 @@
                                                                     <a href="http://localhost:3000" style="display:block;margin-bottom: 20px;"
                                                                         target="_blank">
                                                                         <img alt=""
-                                                                            src="https://thumbs.dreamstime.com/b/online-shop-logo-ecommerce-design-vector-187896714.jpg"
+                                                                            src="https://res.cloudinary.com/dk4pzxlqt/image/upload/v1688643068/logo_jh20h4.png"
                                                                             style="border-radius: 50%;width: 50px; height: 50px;display:block; text-align: center;margin: 0 auto;">
                                                                     </a>
                                                                 </td>
@@ -47,13 +47,13 @@
                                                 <td>
                                                     <h1
                                                         style="font-size:17px;font-weight:bold;color:#444;padding:0 0 5px 0;margin:0">
-                                                        Cảm ơn quý khách ${customer_name} đã đặt hàng tại E-Shop,</h1>
+                                                        Cảm ơn quý khách ${customer_name} đã đặt hàng tại TUTU STORE,</h1>
             
                                                     <p
                                                         style="margin:4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal">
-                                                        E-Shop rất vui thông báo đơn hàng #${order_id} của quý khách đã được tiếp nhận
+                                                        TUTU STORE rất vui thông báo đơn hàng #${order_id} của quý khách đã được tiếp nhận
                                                         và
-                                                        đang trong quá trình xử lý. E-Shop sẽ thông báo đến quý khách ngay khi hàng
+                                                        đang trong quá trình xử lý. TUTU STORE sẽ thông báo đến quý khách ngay khi hàng
                                                         chuẩn
                                                         bị được giao.</p>
             
@@ -83,14 +83,14 @@
                                                                     valign="top"><span style="text-transform:capitalize">${customer_name}</span><br>
                                                                     <a href="mailto:${customer_email}"
                                                                         target="_blank">${customer_email}</a><br>
-                                                                    0382345678
+                                                                    ${customer_phone}
                                                                 </td>
                                                                 <td style="padding:3px 9px 9px 9px;border-top:0;border-left:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"
                                                                     valign="top"><span style="text-transform:capitalize">${customer_name}</span><br>
                                                                     <a href="mailto:${customer_email}"
                                                                         target="_blank">${customer_email}</a><br>
                                                                     ${customer_address}<br>
-                                                                    T: 0382345678
+                                                                    ${customer_phone}
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -201,7 +201,7 @@
                                                 <td>&nbsp;
                                                     <p
                                                         style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal;border:1px #14ade5 dashed;padding:5px;list-style-type:none">
-                                                        Từ ngày 14/2/2015, E-Shop sẽ không gởi tin nhắn SMS khi đơn hàng của bạn
+                                                        Từ ngày 14/2/2015, TUTU STORE sẽ không gởi tin nhắn SMS khi đơn hàng của bạn
                                                         được xác
                                                         nhận thành công. Chúng tôi chỉ liên hệ trong trường hợp đơn hàng có thể bị
                                                         trễ
@@ -220,7 +220,7 @@
                                                 <td>&nbsp;
                                                     <p
                                                         style="font-family:Arial,Helvetica,sans-serif;font-size:12px;margin:0;padding:0;line-height:18px;color:#444;font-weight:bold">
-                                                        Một lần nữa E-Shop cảm ơn quý khách.
+                                                        Một lần nữa TUTU STORE cảm ơn quý khách.
                                                     </p>
                                                     <p
                                                         style="margin:10px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;padding:4px;color:orange;font-style:italic;border:1px dashed #4daae0">
@@ -229,7 +229,7 @@
                                                         sẽ có thể giao chậm hơn dự kiến. Kính mong quý khách thông cảm.
                                                     </p>
                                                     <p style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal;text-align:right">
-                                                        <strong><a href="http://localhost:3000" style="color:#00a3dd;text-decoration:none;font-size:14px" target="_blank">E-Shop</a>
+                                                        <strong><a href="http://localhost:3000" style="color:#00a3dd;text-decoration:none;font-size:14px" target="_blank">TUTU STORE </a>
                                                         </strong></p>
                                                 </td>
                                             </tr>

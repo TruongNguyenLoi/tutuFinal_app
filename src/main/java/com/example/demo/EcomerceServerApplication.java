@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EcomerceServerApplication {
+public class   EcomerceServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EcomerceServerApplication.class, args);

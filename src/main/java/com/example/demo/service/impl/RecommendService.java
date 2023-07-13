@@ -7,11 +7,13 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.example.demo.dto.AdvanceSearchDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.user.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.impl.ProductServiceImpl;
 
 @Service
 public class RecommendService {
@@ -24,22 +26,7 @@ public class RecommendService {
 
 	public List<Long> getAllProductIdUserLikeAndRating(String username) {
 
-//		select l.product_id, u.fullname
-//		from tbl_product_like l
-//		inner join tbl_user u on l.user_id = u.id
-//		and u.id = 32
-//		union
-//		select c.product_id, u.fullname
-//		from tbl_comment c
-//		inner join tbl_user u on c.user_id = u.id
-//		and c.rating >= 3
-//		and u.id = 32
-
-		// select l.product_id
-//		from tbl_product_like l
-//		inner join tbl_user u on l.user_id = u.id
-//		and u.id = 32
-
+		AdvanceSearchDto allProduct ;
 		User user = userRepos.findOneByUsername(username);
 		String sql1 = "select l.product.id from LikedProduct l inner join User u on u.id = l.user.id and u.id = "
 				+ user.getId();

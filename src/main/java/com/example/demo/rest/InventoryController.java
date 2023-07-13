@@ -34,7 +34,7 @@ public class InventoryController {
 	private InventoryService service;
 
 	@GetMapping(value = "/search/{category}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Page<InventoryDtoRes>> search(@RequestParam(name = "page", defaultValue = "1") int page,
 			@RequestParam(name = "limit", defaultValue = "24") int limit,
 			@RequestParam(name = "keyword", defaultValue = "") String keyword, @PathVariable String category) {

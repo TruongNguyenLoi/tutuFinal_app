@@ -83,7 +83,17 @@ public class ProductServiceImpl implements ProductService {
 	
 //	@Autowired
 //	private TagRepository tagRepos;
+	@Override
+	public List<ProductListDto> getAll(){
+		List<Product> list = productRepos.findAll();
+		List<ProductListDto> dtos = new ArrayList<>();
 
+		for (Product p : list) {
+				ProductListDto dto = new ProductListDto(p);
+				dtos.add(dto);
+		}
+		return  dtos;
+	}
 	@Override
 	public Page<ProductListDto> productList(SearchDto dto) {
 		int pageIndex = dto.getPageIndex();
@@ -125,41 +135,7 @@ public class ProductServiceImpl implements ProductService {
 		if (dto.getSubcategory() != null) {
 			whereClause += " AND ( entity.subcategory.code LIKE :subcategory )";
 		}
-		
-		if (dto.getRam() != null && StringUtils.hasText(dto.getRam())) {
-			whereClause += " AND ( entity.technology.ram = :ram )";
-		} else {
-			whereClause += "";
-		}
-		
-		if (dto.getResolution() != null && StringUtils.hasText(dto.getResolution())) {
-			whereClause += " AND ( entity.technology.display_resolution = :resolution )";
-		} else {
-			whereClause += "";
-		}
-		
-		if (dto.getImage() != null && StringUtils.hasText(dto.getImage())) {
-			whereClause += " AND ( entity.camera.image_quality = :image )";
-		} else {
-			whereClause += "";
-		}
-		if (dto.getVideo() != null && StringUtils.hasText(dto.getVideo())) {
-			whereClause += " AND ( entity.camera.video_quality = :video )";
-		} else {
-			whereClause += "";
-		}
-		
-		if (dto.getIs3DTV() != null) {
-			whereClause += " AND ( entity.tivi.is3D = :is_3d )";
-		} else {
-			whereClause += "";
-		}
-		if (dto.getIsSmartTV() != null) {
-			whereClause += " AND ( entity.tivi.type_tv = :is_smart )";
-		} else {
-			whereClause += "";
-		}
-		
+
 		if (dto.getBrand() != null && StringUtils.hasText(dto.getBrand())) {
 			if (dto.getBrand().contains(",")) {
 				String[] s = dto.getBrand().split(",");
@@ -174,7 +150,7 @@ public class ProductServiceImpl implements ProductService {
 			whereClause += "";
 		}
 
-		if (dto.getPrice() != null && dto.getPrice().equalsIgnoreCase("") == false) {
+		if (dto.getPrice() != null && !dto.getPrice().equalsIgnoreCase("")) {
 			String[] s = dto.getPrice().toString().split(",");
 			Long begin = Long.parseLong(s[0]);
 			Long end = Long.parseLong(s[1]);
@@ -209,34 +185,11 @@ public class ProductServiceImpl implements ProductService {
 			q.setParameter("subcategory", dto.getSubcategory());
 			qCount.setParameter("subcategory", dto.getSubcategory());
 		}
-		
-		if (dto.getRam() != null && StringUtils.hasText(dto.getRam())) {
-			q.setParameter("ram", dto.getRam());
-			qCount.setParameter("ram", dto.getRam());
-		}
-		if (dto.getResolution() != null && StringUtils.hasText(dto.getResolution())) {
-			q.setParameter("resolution", dto.getResolution());
-			qCount.setParameter("resolution", dto.getResolution());
-		}
-		
+
 		if (dto.getImage() != null && StringUtils.hasText(dto.getImage())) {
 			q.setParameter("image", dto.getImage());
 			qCount.setParameter("image", dto.getImage());
 		}
-		if (dto.getVideo() != null && StringUtils.hasText(dto.getVideo())) {
-			q.setParameter("video", dto.getVideo());
-			qCount.setParameter("video", dto.getVideo());
-		}
-		
-		if (dto.getIs3DTV() != null) {
-			q.setParameter("is_3d", dto.getIs3DTV());
-			qCount.setParameter("is_3d", dto.getIs3DTV());
-		}
-		if (dto.getIsSmartTV() != null) {
-			q.setParameter("is_smart", dto.getIsSmartTV());
-			qCount.setParameter("is_smart", dto.getIsSmartTV());
-		}
-
 		if (dto.getBrand() != null && dto.getBrand().length() > 0 && dto.getBrand().contains(",") == false) {
 			q.setParameter("brand", dto.getBrand());
 			qCount.setParameter("brand", dto.getBrand());
@@ -351,12 +304,12 @@ public class ProductServiceImpl implements ProductService {
 			qCount.setParameter("category", dto.getCategory());
 		}
 
-		if (dto.getBrand() != null && dto.getBrand().length() > 0 && dto.getBrand().contains(",") == false) {
+		if (dto.getBrand() != null && dto.getBrand().length() > 0 && !dto.getBrand().contains(",")) {
 			q.setParameter("brand", dto.getBrand());
 			qCount.setParameter("brand", dto.getBrand());
 		}
 		
-		if (dto.getSupplier() != null && dto.getSupplier().length() > 0 && dto.getSupplier().contains(",") == false) {
+		if (dto.getSupplier() != null && dto.getSupplier().length() > 0 && !dto.getSupplier().contains(",")) {
 			q.setParameter("supplier", dto.getSupplier());
 			qCount.setParameter("supplier", dto.getSupplier());
 		}
@@ -403,8 +356,7 @@ public class ProductServiceImpl implements ProductService {
 			
 			List<String> color_names = dto.getColors();
 			
-//			List<TagDto> tagNames = dto.getTags();
-//			List<Tag> tags = new ArrayList<>();
+
 			
 			List<Inventory> inventories = new ArrayList<>();
 
@@ -431,34 +383,25 @@ public class ProductServiceImpl implements ProductService {
 
 				discount = new ProductDiscount();
 				discount.setStatus(1);
+				discount.setProduct(entity);
 //					inventory = new Inventory(0, 0, entity, item, category.getCode());
 					inventory = new Inventory();
 					inventory.setDisplay(1);
 					inventory.setCategory_code(category.getCode());
 					inventory.setQuantity_item(0);
 					inventory.setTotal_import_item(0);
-
 					inventory.setProduct(entity);
 					inventories.add(inventory);
-//				for(Color item : colors) {
-////					inventory = new Inventory(0, 0, entity, item, category.getCode());
-//					inventory = new Inventory();
-//					inventory.setDisplay(1);
-//					inventory.setCategory_code(category.getCode());
-//					inventory.setQuantity_item(0);
-//					inventory.setTotal_import_item(0);
-//					inventory.setColor(item);
-//					inventory.setProduct(entity);
-//					inventories.add(inventory);
-//				}
+
 				for (int i = 0; i < imageUrls.size(); i++) {
 					image = new Image(imageUrls.get(i));
 					images.add(image);
 				}
 			}
+			String features = dto.getName()+dto.getCategory()+dto.getSubcategory()+dto.getSupplier()+dto.getBrand();
 			entity.setType(dto.getType());
 			entity.setName(dto.getName());
-			entity.setMainIamge(dto.getMainImage());
+			entity.setMainImage(dto.getMainImage());
 			entity.setWeight(dto.getWeight());
 			entity.setLength(dto.getLength());
 			entity.setWidth(dto.getWidth());
@@ -470,27 +413,14 @@ public class ProductServiceImpl implements ProductService {
 			entity.setDescription(dto.getDescription());
 			entity.setSizeWeight(dto.getSizeWeight());
 			entity.setMaterial(dto.getMaterial());
-			entity.setFeatures(dto.getFeatures());
+			entity.setFeatures(features);
 			entity.setDisplay(1);
 			entity.setCategory(category);
 			entity.setSubcategory(subcategory);
 			entity.setBrand(brand);
 			entity.setSupplier(supplier);
 			entity.setDiscount(discount);
-			
-//			if (tagNames != null) {
-//				for (TagDto item : tagNames) {
-//					tag = tagRepos.getOneByCode(item.getCode());
-//					if (tag != null) {
-//						tags.add(tag);
-//					}
-//				}
-//			}
-			
-
-
 			entity.setImages(images);
-//			entity.setTags(tags);
 			entity.setInventories(inventories);
 			for (int i = 0; i < images.size(); i++) {
 				images.get(i).setProduct(entity);
@@ -588,7 +518,7 @@ public class ProductServiceImpl implements ProductService {
 		String sqlCount = "select count(*) from OrderDetail as s " + "INNER JOIN Product p ON s.product.id = p.id "
 				+ " INNER JOIN Order o ON o.status = 2 and o.id = s.order.id " + "GROUP BY s.product.id ";
 		String sql = "select new com.example.demo.dto.product.ProductTopSale(p.id as id, p.name as name, "
-				+ "p.slug as slug, p.price as price, p.list_price as list_price, p.mainIamge as mainImage, p.brand.name as brandName, p.brand.madeIn as brandMadeIn, "
+				+ "p.slug as slug, p.price as price, p.list_price as list_price, p.mainImage as mainImage, p.brand.name as brandName, p.brand.madeIn as brandMadeIn, "
 				+ " SUM(s.quantity) as quantity_sold) " + " from OrderDetail as s "
 				+ " INNER JOIN Product p ON s.product.id = p.id"
 				+ " INNER JOIN Order o ON o.status = 2 and o.id = s.order.id "

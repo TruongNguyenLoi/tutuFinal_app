@@ -46,7 +46,7 @@ public class LikedProductDto extends AbstractDTO<LikedProductDto> {
 		} else {
 			this.percent_discount = null;
 		}
-		this.mainImage = entity.getProduct().getMainIamge();
+		this.mainImage = entity.getProduct().getMainImage();
 		category = new CategoryDtoRes();
 		if (category != null) {
 			Category item = entity.getProduct().getCategory();

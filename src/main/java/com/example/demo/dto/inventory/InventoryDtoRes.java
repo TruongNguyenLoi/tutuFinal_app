@@ -40,7 +40,7 @@ public class InventoryDtoRes extends AbstractDTO<InventoryDtoRes> {
 		this.sold = this.total_import_item - this.quantity_item;
 		this.productId = entity.getProduct().getId();
 		this.productName = entity.getProduct().getName();
-		this.productMainImage = entity.getProduct().getMainIamge();
+		this.productMainImage = entity.getProduct().getMainImage();
 		this.category_code = entity.getCategory_code();
 		this.display = entity.getDisplay();
 	}
