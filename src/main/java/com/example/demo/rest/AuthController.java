@@ -292,17 +292,6 @@ public class AuthController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
-//	@GetMapping("/all/shipper")
-//	@PreAuthorize("hasRole('ROLE_ADMIN')")
-//	public ResponseEntity<Page<UserDto>> getListUserByRole(@RequestParam(name = "page", defaultValue = "0") int page,
-//			@RequestParam(name = "limit", defaultValue = "10") int limit) {
-//		SearchDto dto = new SearchDto();
-//		dto.setPageIndex(page);
-//		dto.setPageSize(limit);
-//		String role = "ROLE_ADMIN";
-//		Page<UserDto> result = userService.getListByRole(role, dto);
-//		return new ResponseEntity<Page<UserDto>>(result, HttpStatus.OK);
-//	}
 
 	@GetMapping("/customer/{id}")
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_SELLER')")

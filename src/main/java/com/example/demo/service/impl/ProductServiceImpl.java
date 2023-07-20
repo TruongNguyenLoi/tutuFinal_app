@@ -354,7 +354,7 @@ public class ProductServiceImpl implements ProductService {
 			List<String> imageUrls = dto.getImages();
 			List<Image> images = new ArrayList<>();
 			
-			List<String> color_names = dto.getColors();
+
 			
 
 			
@@ -398,7 +398,7 @@ public class ProductServiceImpl implements ProductService {
 					images.add(image);
 				}
 			}
-			String features = dto.getName()+dto.getCategory()+dto.getSubcategory()+dto.getSupplier()+dto.getBrand();
+			String features = dto.getName()+","+dto.getCategory()+","+dto.getSubcategory()+","+dto.getSupplier()+","+dto.getBrand();
 			entity.setType(dto.getType());
 			entity.setName(dto.getName());
 			entity.setMainImage(dto.getMainImage());
@@ -514,14 +514,23 @@ public class ProductServiceImpl implements ProductService {
 			pageIndex -= 1;
 		else
 			pageIndex = 0;
+//		String groupOrderClause = " GROUP BY s.product.id ORDER BY quantity_sold DESC";
+//		String sqlCount = "select count(*) from OrderDetail as s " + "INNER JOIN Product p ON s.product.id = p.id "
+//				+ " INNER JOIN Order o ON o.status = 2 and o.id = s.order.id " + "GROUP BY s.product.id ";
+//		String sql = "select new com.example.demo.dto.product.ProductTopSale(p.id as id, p.name as name, "
+//				+ "p.slug as slug, p.price as price, p.list_price as list_price, p.mainImage as mainImage, p.brand.name as brandName, p.brand.madeIn as brandMadeIn, "
+//				+ " SUM(s.quantity) as quantity_sold) " + " from OrderDetail as s "
+//				+ " INNER JOIN Product p ON s.product.id = p.id"
+//				+ " INNER JOIN Order o ON o.status = 2 and o.id = s.order.id "
+//				+ " AND (TIMESTAMPDIFF(DAY, o.createdDate, NOW()) <= 30 )";
 		String groupOrderClause = " GROUP BY s.product.id ORDER BY quantity_sold DESC";
 		String sqlCount = "select count(*) from OrderDetail as s " + "INNER JOIN Product p ON s.product.id = p.id "
-				+ " INNER JOIN Order o ON o.status = 2 and o.id = s.order.id " + "GROUP BY s.product.id ";
+				+ " INNER JOIN Order o ON o.status = 3 and o.id = s.order.id " + "GROUP BY s.product.id ";
 		String sql = "select new com.example.demo.dto.product.ProductTopSale(p.id as id, p.name as name, "
 				+ "p.slug as slug, p.price as price, p.list_price as list_price, p.mainImage as mainImage, p.brand.name as brandName, p.brand.madeIn as brandMadeIn, "
 				+ " SUM(s.quantity) as quantity_sold) " + " from OrderDetail as s "
 				+ " INNER JOIN Product p ON s.product.id = p.id"
-				+ " INNER JOIN Order o ON o.status = 2 and o.id = s.order.id "
+				+ " INNER JOIN Order o ON o.status = 3 and o.id = s.order.id "
 				+ " AND (TIMESTAMPDIFF(DAY, o.createdDate, NOW()) <= 30 )";
 		sql += groupOrderClause;
 

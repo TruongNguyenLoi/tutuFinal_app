@@ -211,7 +211,6 @@ public class OrderController {
 			List<OrderDetail> orderDetailDtos = order.getOrderDetails();
 			for (OrderDetail i : orderDetailDtos) {
 				Product product = productRepos.getById(i.getProduct().getId());
-//				Color color = colorRepos.findOneByName(i.getColor());
 				if (inventoryRepos.existsByProduct(product)) {
 					Inventory inventory = inventoryRepos.getOneByProduct(product);
 					inventory.setQuantity_item(inventory.getQuantity_item() - i.getQuantity());
@@ -258,7 +257,7 @@ public class OrderController {
 			List<OrderDetail> orderDetailDtos = order.getOrderDetails();
 			for (OrderDetail i : orderDetailDtos) {
 				Product product = productRepos.getById(i.getProduct().getId());
-				//Color color = colorRepos.findOneByName(i.getColor());
+
 				Inventory inv = inventoryRepos.getOneByProduct(product);
 				Integer quantity_in_stock = inv.getQuantity_item();
 				if (quantity_in_stock == 0) {
@@ -424,7 +423,7 @@ public class OrderController {
 				//	Color c = colorRepos.findOneByName(i.getColor());
 					if (inventoryRepos.existsByProduct(p)) {
 						Inventory inventory = inventoryRepos.getOneByProduct(p);
-						inventory.setQuantity_item(inventory.getQuantity_item() + i.getQuantity());
+//						inventory.setQuantity_item(inventory.getQuantity_item() + i.getQuantity());
 						inventoryRepos.save(inventory);
 					}
 				}

@@ -20,8 +20,10 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	
 	public Boolean existsByStatus(Long status);
 	
-	@Query("SELECT sum(e.total_price) from Order e where e.status = 2 AND (TIMESTAMPDIFF(DAY, e.createdDate, NOW())<=?1)")
-	public Long totalRevenueFromOrder(Integer lastDate);
+//	@Query("SELECT sum(e.total_price) from Order e where e.status =2  AND (TIMESTAMPDIFF(DAY, e.createdDate, NOW())<=?1)")
+@Query("SELECT sum(e.total_price) from Order e where e.status = 3 AND (TIMESTAMPDIFF(DAY, e.createdDate, NOW())<=?1)")
+
+public Long totalRevenueFromOrder(Integer lastDate);
 	
 	@Query("SELECT COUNT(entity) FROM Order entity WHERE entity.status=?1")
 	public Integer countOrderByStatus(Integer status);

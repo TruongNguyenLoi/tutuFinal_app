@@ -224,17 +224,9 @@ public class OrderServiceImpl implements OrderService {
 			List<OrderDetailDto> orderDetailDtos = dto.getOrder_details();
 			for (OrderDetailDto i : orderDetailDtos) {
 				Product product = productRepository.getById(i.getProduct_id());
-//				Color color = colorRepos.findOneByName(i.getColor());
-//				if (inventoryRepos.existsByProductAndColor(product, color)) {
-//					Inventory inventory = inventoryRepos.getOneByProductAndColor(product, color);
-//					inventory.setQuantity_item(inventory.getQuantity_item() - i.getQuantity());
-//					inventoryRepos.save(inventory);
-//				}
-//				OrderDetail orderDetail = i.toEntity(order, product, color.getName());
 				OrderDetail orderDetail = new OrderDetail();
 				orderDetail.setProduct(product);
 				orderDetail.setQuantity(i.getQuantity());
-//				orderDetail.setColor(color.getName());
 				orderDetail.setPrice(i.getPrice());
 				orderDetail.setTotal_price(i.getTotal_price());
 				orderDetail.setOrder(order);

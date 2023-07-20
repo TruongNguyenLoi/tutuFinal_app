@@ -193,7 +193,7 @@ public class ProductController {
 
 	// thêm sản phẩm vào csdl
 	@PostMapping("/add-product")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto dto) {
 		ProductDto result = service.saveOrUpdate(dto);
 		return new ResponseEntity<ProductDto>(result, HttpStatus.OK);

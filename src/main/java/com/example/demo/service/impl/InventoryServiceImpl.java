@@ -55,11 +55,7 @@ public class InventoryServiceImpl implements InventoryService {
 		else
 			pageIndex = 0;
 
-//		SELECT p.name as product_name, c.name as category_name, sum(i.total_import) as total_import, sum(i.total_item) as total_item, total_import - total_item as total_sell
-//		FROM tbl_inventory as i
-//		inner join tbl_product as p on p.id = 20 and p.id = i.product_id
-//		inner join tbl_category as c on c.id = p.category_id
-//		group by product_id
+
 
 		String orderBy = " ORDER BY p.id DESC";
 		String groupBy = " group by i.product.id ";
@@ -236,28 +232,4 @@ public class InventoryServiceImpl implements InventoryService {
 
 		return false;
 	}
-
-//	@Override
-//	public List<ColorDto> getAllColorNotExsistProduct(Long productId) {
-//
-////		SELECT T1.name
-////		FROM
-////		   tbl_product_color T1
-////		   LEFT OUTER JOIN
-////		   tbl_inventory T2 ON T1.id = T2.color_id and T2.product_id = 47
-////		where T2.product_id is null
-//
-//		// TODO Auto-generated method stub
-//
-//		String sql = "select new com.example.demo.dto.product.ColorDto(c.name) "
-//				+ "from Color as c LEFT OUTER JOIN Inventory as i on c.id = i.color.id and i.product.id = " + productId
-//				+ " where i.product.id is null";
-//
-//		Query q = manager.createQuery(sql, ColorDto.class);
-//
-//		@SuppressWarnings("unchecked")
-//		List<ColorDto> entities = q.getResultList();
-//		return entities;
-//	}
-
 }
