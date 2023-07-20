@@ -398,7 +398,7 @@ public class ProductServiceImpl implements ProductService {
 					images.add(image);
 				}
 			}
-			String features = dto.getName()+","+dto.getCategory()+","+dto.getSubcategory()+","+dto.getSupplier()+","+dto.getBrand();
+			String features = dto.getCategory()+","+dto.getSubcategory()+","+dto.getSupplier()+","+dto.getBrand();
 			entity.setType(dto.getType());
 			entity.setName(dto.getName());
 			entity.setMainImage(dto.getMainImage());

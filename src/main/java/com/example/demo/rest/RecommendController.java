@@ -196,7 +196,11 @@ public class RecommendController {
 				}
 				return new ResponseEntity<List<ProductListDto>>(result, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<String>(new String("ERROR"),HttpStatus.BAD_REQUEST);
+				List<ProductListDto> result = new ArrayList<ProductListDto>();
+
+//				return new ResponseEntity<String>(new String("ERROR"),HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<List<ProductListDto>>(result, HttpStatus.BAD_REQUEST);
+
 			}
 		}
 	}
